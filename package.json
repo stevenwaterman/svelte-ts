@@ -1,0 +1,29 @@
+{
+  "name": "svelte-ts",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": "https://github.com/stevenwaterman/svelte-ts",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "run-p check:types start:dev autobuild",
+    "check:types": "svelte-check",
+    "autobuild": "rollup -c -w",
+    "start:dev": "sirv public --single --dev",
+    "start:prod": "sirv public --single"
+  },
+  "devDependencies": {
+    "rollup": "^2.22.1",
+    "@rollup/plugin-commonjs": "^14.0.0",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "@rollup/plugin-typescript": "^5.0.2",
+    "rollup-plugin-livereload": "^1.3.0",
+    "rollup-plugin-svelte": "^5.2.3",
+    "rollup-plugin-terser": "^6.1.0",
+    "svelte": "^3.24.0",
+    "svelte-preprocess": "^4.0.8",
+    "svelte-check": "^0.1.55",
+    "typescript": "^3.9.7",
+    "npm-run-all": "^4.1.5",
+    "sirv-cli": "^1.0.3"
+  }
+}

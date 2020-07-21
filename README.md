@@ -1,0 +1,1 @@
+# Minimal Svelte Typescript Example
