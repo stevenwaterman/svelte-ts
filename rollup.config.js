@@ -17,11 +17,10 @@ export default {
     file: "public/build/bundle.js"
   },
   plugins: [
+    typeCheck(),
     typescript({ sourceMap: !production }),
     svelte({
-      preprocess: sveltePreprocess({
-        sourceMap: !production
-      }),
+      preprocess: sveltePreprocess(),
       dev: !production,
       css: css => {
         css.write("public/build/bundle.css");
@@ -35,7 +34,36 @@ export default {
     }),
     commonjs(),
 
+    !production && serve(),
     !production && livereload("public"),
     production && terser(),
   ],
 };
+
+function typeCheck() {
+  return {
+    writeBundle() {
+      require('child_process').spawn('svelte-check', {
+        stdio: ['ignore', 'inherit', 'inherit'],
+        shell: true
+      });
+    }
+  }
+}
+
+function serve() {
+  let started = false;
+
+  return {
+    writeBundle() {
+      if (!started) {
+        started = true;
+
+        require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+          stdio: ['ignore', 'inherit', 'inherit'],
+          shell: true
+        });
+      }
+    }
+  };
+}
