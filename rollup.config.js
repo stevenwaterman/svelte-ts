@@ -1,6 +1,6 @@
 import typescript from "@rollup/plugin-typescript";
-import svelte from "rollup-plugin-svelte";
 import sveltePreprocess from "svelte-preprocess";
+import svelte from "rollup-plugin-svelte";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
@@ -9,7 +9,7 @@ import { terser } from "rollup-plugin-terser";
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-  input: "src/main.js",
+  input: "src/main.ts",
   output: {
     sourcemap: true,
     format: "iife",
